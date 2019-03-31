@@ -29,6 +29,7 @@ void destroyList(Node *head) {
 }
 
 /* Reverses entire list. */
+/* It's mandatory to set tail to head before calling this function. */
 Node *reverseList(Node *head) {
     Node *prev = NULL;
     Node *curr = NULL;
@@ -45,8 +46,9 @@ Node *reverseList(Node *head) {
 }
 
 /* Reverses elements in the middle of a list.
-   start >= 1 */
-void reverseInMiddle(Node *head, size_t start, size_t end) {
+   start >= 1
+   Returns new tail node. */
+Node *reverseInMiddle(Node *head, size_t start, size_t end) {
     Node *prev = NULL;
     Node *curr = NULL;
     Node *next = NULL;
@@ -54,6 +56,7 @@ void reverseInMiddle(Node *head, size_t start, size_t end) {
     Node *startNode = NULL;
     Node *endNode = NULL;
     Node *oldNext = NULL;
+    Node *tail = NULL;
 
     oldPrev = traverseList(head, start);
     startNode = curr = oldPrev->next;
@@ -67,6 +70,18 @@ void reverseInMiddle(Node *head, size_t start, size_t end) {
     oldNext = curr;
     oldPrev->next = endNode;
     startNode->next = oldNext;
+
+    if (curr == NULL) {
+        tail = startNode;
+    }
+    else {
+        while (curr) {
+            tail = curr;
+            curr = curr->next;
+        }
+    }
+
+    return tail;
 }
 
 Node *traverseList(Node *head, size_t dist) {
@@ -78,8 +93,10 @@ Node *traverseList(Node *head, size_t dist) {
 }
 
 void printList(Node *head) {
+    printf("[head] => ");
     for (Node *curr = head; curr != NULL; curr = curr->next) {
-        printf("%d\n", curr->value);
+        printf("%d => ", curr->value);
     }
-    printf("\n");
+    printf("[tail]\n\n");
 }
+
