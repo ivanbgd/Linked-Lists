@@ -21,15 +21,58 @@ int main(void) {
     addNode(102, curr);
     printList(head);
 
+    tail = head;    /* MANDATORY before a call to reverseList()!!! */
     head = reverseList(head);
     printList(head);
 
+    tail = addNode(99, tail);
+    tail = addNode(98, tail);
+    printList(head);
+
+    tail = traverseList(head, 6);   // We're deleting the very last node!
+    deleteNode(tail);               // Deletes the next node.
+    tail = traverseList(head, 5);   // We're deleting the very last node!
+    deleteNode(tail);
+    printList(head);
+        
+    tail = head;
     head = reverseList(head);
     tail = addNode(105, tail);
     tail = addNode(106, tail);
     printList(head);
 
-    reverseInMiddle(head, 2, 4);
+    printf("\n\nReverse in middle:\n\n");
+
+    tail = reverseInMiddle(head, 2, 4);
+    printList(head);
+
+    tail = addNode(107, tail);
+    tail = addNode(108, tail);
+    printList(head);
+
+    tail = reverseInMiddle(head, 2, 4);
+    printList(head);
+
+    tail = traverseList(head, 8);   // We're deleting the very last node!
+    deleteNode(tail);
+    tail = traverseList(head, 7);   // We're deleting the very last node!
+    deleteNode(tail);
+    printList(head);
+
+    tail = reverseInMiddle(head, 1, 6);
+    printList(head);
+
+    tail = addNode(107, tail);
+    tail = addNode(108, tail);
+    printList(head);
+
+    tail = reverseInMiddle(head, 1, 6);
+    printList(head);
+
+    tail = traverseList(head, 8);   // We're deleting the very last node!
+    deleteNode(tail);
+    tail = traverseList(head, 7);   // We're deleting the very last node!
+    deleteNode(tail);
     printList(head);
 
     destroyList(head);
@@ -39,3 +82,4 @@ int main(void) {
     system("pause");
     return 0;
 }
+
